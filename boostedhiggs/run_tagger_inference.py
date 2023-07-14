@@ -38,6 +38,9 @@ class wrapped_triton:
         if self._protocol == "grpc":
             client = triton_grpc.InferenceServerClient(url=self._address, verbose=False)
             triton_protocol = triton_grpc
+        elif self._protocol == "grpcs":
+            client = triton_grpc.InferenceServerClient(url=self._address, verbose=False, ssl=True)
+            triton_protocol = triton_grpc
         elif self._protocol == "http":
             client = triton_http.InferenceServerClient(
                 url=self._address,
